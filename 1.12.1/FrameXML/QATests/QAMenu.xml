@@ -1,0 +1,95 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+<!--
+*	Q/A Test Menu
+*	=============
+*
+*	The Q/A menu is enabled by uncommenting the following line in FrameXML.toc:
+*	Interface\FrameXML\QATests\QAMenu.xml
+*
+*	The Q/A menu and test scripts are located in Interface\FrameXML\QATests.
+*	The XML and scripting code for the menu reside in QAMenu.xml and QAMenu.lua, respectively.
+*	New tests are added to the menu by creating a new test script and adding it at the top of QATest.xml.
+*	See the existing test scripts for examples of creating a test script.
+*	By convention, test scripts are named QAMenu_XXX.lua, and reside in Interface\FrameXML\QATests.
+*
+*	The lua scripting manual is available online: http://www.lua.org/manual/manual.html
+*
+*
+*	Q/A Script Functions
+*	====================
+*
+*	QATest_Exec(command)
+*	- Execute any console command string or WTF file
+*
+*	QATest_Print(text)
+*	- Say the text message
+*
+*	QATest_Delay(delay)
+*	- Delay a number of seconds
+*
+*	QATest_Wait()
+*	- Wait for a key to be pressed
+*
+*	DeleteTargetUnit()
+*	- Delete the currently targeted unit
+*
+*	EquipItemID(id)
+*	- Autoequip the first item with the given id in the player's bags
+*
+*	UseItemID(id)
+*	- Use the item with the given id
+*
+*	DeleteItemID(id)
+*	- Delete the item with the given id
+*
+*	CastSpellID(id)
+*	- Cast the spell with the given id, if learned
+*
+*	In addition to those functions, any of the script functions used by any of the UI may be called from test scripts.
+-->
+	<Script file="QAMenu.lua"/>
+	<Script file="QAMenu_ReloadUI.lua"/>
+	<!-- Insert test scripts here (up to a maximum of 23 menu items) -->
+	<Script file="QAMenu_UnitTests.lua"/>
+	<Script file="QAMenu_ItemTests.lua"/>
+	<Script file="QAMenu_SpellTests.lua"/>
+	<!--  -->
+	<Button name="QAMicroButton" inherits="MainMenuBarMicroButton" parent="MainMenuBarArtFrame">
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="MainMenuMicroButton" relativePoint="BOTTOMRIGHT">
+				<Offset>
+					<AbsDimension x="-2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				LoadMicroButtonTextures("MainMenu");
+				this.tooltipText = "Q/A Popup Menu";
+			</OnLoad>
+			<OnUpdate>
+				QAMenu_OnUpdate(arg1);
+			</OnUpdate>
+			<OnClick>
+				QAMenu:Show();
+			</OnClick>
+			<OnKeyDown>
+				QATest_WaitEnded();
+			</OnKeyDown>
+		</Scripts>
+	</Button>
+	<Frame name="QAMenu" inherits="UIMenuTemplate" hidden="true" parent="UIParent">
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="QAMicroButton" relativePoint="TOPRIGHT"/>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				QAMenu_OnLoad();
+			</OnLoad>
+			<OnShow>
+				QAMenu_OnShow();
+			</OnShow>
+		</Scripts>
+	</Frame>
+</Ui>

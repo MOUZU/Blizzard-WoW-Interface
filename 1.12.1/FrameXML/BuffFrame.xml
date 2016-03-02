@@ -1,0 +1,432 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="BuffFrame.lua"/>
+	<Button name="BuffButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="30" y="30"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentIcon"/>
+				<FontString name="$parentCount" inherits="NumberFontNormal">
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="-2" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				this.buffFilter = "HELPFUL|HARMFUL";
+				BuffButton_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				BuffButton_OnEvent(event);
+			</OnEvent>
+			<OnUpdate>
+				BuffButton_OnUpdate();
+			</OnUpdate>
+			<OnClick>
+				BuffButton_OnClick();
+			</OnClick>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_BOTTOMLEFT");
+				GameTooltip:SetPlayerBuff(this.buffIndex);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</Button>
+	<FontString name="BuffButtonDurationTemplate" inherits="GameFontNormalSmall" virtual="true">
+		<Anchors>
+			<Anchor point="TOP"/>
+		</Anchors>
+	</FontString>
+	<Button name="BuffButtonHelpful" inherits="BuffButtonTemplate" virtual="true">
+		<Scripts>
+			<OnLoad>
+				this.buffFilter = "HELPFUL";
+				BuffButton_OnLoad();
+			</OnLoad>
+		</Scripts>
+	</Button>
+	<Button name="BuffButtonHarmful" inherits="BuffButtonTemplate" virtual="true">
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="$parentBorder" file="Interface\Buttons\UI-Debuff-Overlays">
+					<Size>
+						<AbsDimension x="33" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0.296875" right="0.5703125" top="0" bottom="0.515625"/>
+				</Texture>	
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				this.buffFilter = "HARMFUL";
+				BuffButton_OnLoad();
+			</OnLoad>
+		</Scripts>
+	</Button>
+	<Button name="BuffButtonTempEnchant" inherits="BuffButtonTemplate" virtual="true">
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="$parentBorder" file="Interface\Buttons\UI-TempEnchant-Border">
+					<Size>
+						<AbsDimension x="32" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+			</OnLoad>
+			<OnEvent>
+			</OnEvent>
+			<OnUpdate>
+				BuffFrame_EnchantButton_OnUpdate();
+			</OnUpdate>
+			<OnClick>
+			</OnClick>
+			<OnEnter>
+				BuffFrame_EnchantButton_OnEnter();
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</Button>
+
+	<Frame name="BuffFrame" parent="UIParent" frameStrata="LOW" toplevel="true">
+		<Size>
+			<AbsDimension x="50" y="50"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="UIParent" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-205" y="-13"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="BuffButton0Duration" inherits="BuffButtonDurationTemplate"/>
+				<FontString name="BuffButton1Duration" inherits="BuffButtonDurationTemplate"/>
+				<FontString name="BuffButton2Duration" inherits="BuffButtonDurationTemplate"/>
+				<FontString name="BuffButton3Duration" inherits="BuffButtonDurationTemplate"/>
+				<FontString name="BuffButton4Duration" inherits="BuffButtonDurationTemplate"/>
+				<FontString name="BuffButton5Duration" inherits="BuffButtonDurationTemplate"/>
+				<FontString name="BuffButton6Duration" inherits="BuffButtonDurationTemplate"/>
+				<FontString name="BuffButton7Duration" inherits="BuffButtonDurationTemplate"/>
+				<FontString name="BuffButton8Duration" inherits="BuffButtonDurationTemplate"/>
+				<FontString name="BuffButton9Duration" inherits="BuffButtonDurationTemplate"/>
+				<FontString name="BuffButton10Duration" inherits="BuffButtonDurationTemplate"/>
+				<FontString name="BuffButton11Duration" inherits="BuffButtonDurationTemplate"/>
+				<FontString name="BuffButton12Duration" inherits="BuffButtonDurationTemplate"/>
+				<FontString name="BuffButton13Duration" inherits="BuffButtonDurationTemplate"/>
+				<FontString name="BuffButton14Duration" inherits="BuffButtonDurationTemplate"/>
+				<FontString name="BuffButton15Duration" inherits="BuffButtonDurationTemplate"/>
+				<FontString name="BuffButton16Duration" inherits="BuffButtonDurationTemplate"/>
+				<FontString name="BuffButton17Duration" inherits="BuffButtonDurationTemplate"/>
+				<FontString name="BuffButton18Duration" inherits="BuffButtonDurationTemplate"/>
+				<FontString name="BuffButton19Duration" inherits="BuffButtonDurationTemplate"/>
+				<FontString name="BuffButton20Duration" inherits="BuffButtonDurationTemplate"/>
+				<FontString name="BuffButton21Duration" inherits="BuffButtonDurationTemplate"/>
+				<FontString name="BuffButton22Duration" inherits="BuffButtonDurationTemplate"/>
+				<FontString name="BuffButton23Duration" inherits="BuffButtonDurationTemplate"/>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="BuffButton0" inherits="BuffButtonHelpful" id="0">
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BuffButton1" inherits="BuffButtonHelpful" id="1">
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="BuffButton0" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BuffButton2" inherits="BuffButtonHelpful" id="2">
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="BuffButton1" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BuffButton3" inherits="BuffButtonHelpful" id="3">
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="BuffButton2" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BuffButton4" inherits="BuffButtonHelpful" id="4">
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="BuffButton3" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BuffButton5" inherits="BuffButtonHelpful" id="5">
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="BuffButton4" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BuffButton6" inherits="BuffButtonHelpful" id="6">
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="BuffButton5" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BuffButton7" inherits="BuffButtonHelpful" id="7">
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="BuffButton6" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BuffButton8" inherits="BuffButtonHelpful" id="8">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="BuffButton0" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BuffButton9" inherits="BuffButtonHelpful" id="9">
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="BuffButton8" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BuffButton10" inherits="BuffButtonHelpful" id="10">
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="BuffButton9" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BuffButton11" inherits="BuffButtonHelpful" id="11">
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="BuffButton10" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BuffButton12" inherits="BuffButtonHelpful" id="12">
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="BuffButton11" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BuffButton13" inherits="BuffButtonHelpful" id="13">
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="BuffButton12" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BuffButton14" inherits="BuffButtonHelpful" id="14">
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="BuffButton13" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BuffButton15" inherits="BuffButtonHelpful" id="15">
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="BuffButton14" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BuffButton16" inherits="BuffButtonHarmful" id="0">
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="BuffButton8" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BuffButton17" inherits="BuffButtonHarmful" id="1">
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="BuffButton16" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BuffButton18" inherits="BuffButtonHarmful" id="2">
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="BuffButton17" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BuffButton19" inherits="BuffButtonHarmful" id="3">
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="BuffButton18" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BuffButton20" inherits="BuffButtonHarmful" id="4">
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="BuffButton19" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BuffButton21" inherits="BuffButtonHarmful" id="5">
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="BuffButton20" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BuffButton22" inherits="BuffButtonHarmful" id="6">
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="BuffButton21" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BuffButton23" inherits="BuffButtonHarmful" id="7">
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="BuffButton22" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				BuffFrame_OnLoad();
+			</OnLoad>
+			<OnUpdate>
+				BuffFrame_OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+	<Frame name="TemporaryEnchantFrame" parent="UIParent" frameStrata="LOW" toplevel="true">
+		<Size>
+			<AbsDimension x="36" y="36"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="UIParent" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-175" y="-13"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="TempEnchant1Duration" inherits="BuffButtonDurationTemplate"/>
+				<FontString name="TempEnchant2Duration" inherits="BuffButtonDurationTemplate"/>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="TempEnchant1" inherits="BuffButtonTempEnchant">
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TempEnchant2" inherits="BuffButtonTempEnchant">
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="TempEnchant1" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				TempEnchant1Duration:SetPoint("TOP", "TempEnchant1", "BOTTOM", 0, 0);
+				TempEnchant2Duration:SetPoint("TOP", "TempEnchant2", "BOTTOM", 0, 0);
+			</OnLoad>
+			<OnUpdate>
+				BuffFrame_Enchant_OnUpdate(arg1);
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>
